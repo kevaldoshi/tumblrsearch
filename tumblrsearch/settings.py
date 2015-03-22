@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#=jeu6o2=44ff%j05a)k!r*ajbl!q#(#acyv50%#fm2d%oz)52'
+SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
 
 def get_env_variable(var_name):
     """Get the environment variable or return exception"""
@@ -35,6 +35,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'templates'),
+)
 
 # Application definition
 
@@ -45,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blogs',
 )
 
 MIDDLEWARE_CLASSES = (
