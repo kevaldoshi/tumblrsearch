@@ -2,3 +2,5 @@ Django==1.7.7
 psycopg2==2.5.4
 django-taggit==0.12.3
 pytumblr
+python-dateutil
+pytz

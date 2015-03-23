@@ -10,14 +10,11 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from blogs.utils import get_env_variable
+from os.path import abspath, basename, dirname, join, normpath
+#from blogs.utils import get_env_variable
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 
 def get_env_variable(var_name):
     """Get the environment variable or return exception"""
@@ -27,6 +24,10 @@ def get_env_variable(var_name):
         error_msg = "Set the %s environment variable" % var_name
     raise ImproperlyConfigured(error_msg)
 
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -34,10 +35,14 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+DJANGO_ROOT = dirname(abspath(__file__))
+
+SITE_ROOT = dirname(DJANGO_ROOT)
+
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'templates'),
+    normpath(join(SITE_ROOT, 'templates')),
 )
 
 # Application definition
