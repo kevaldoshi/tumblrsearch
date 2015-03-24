@@ -5,6 +5,7 @@ import json
 import dateutil.tz
 import dateutil.parser
 import os
+from django.utils.html import strip_tags
 
 
 class TumblrClient(object):
@@ -30,12 +31,13 @@ def process_caption(blog):
     elif 'title' in blog:
         caption = blog['title']
     else:
-        caption = "Default"
+        caption = "Just Another Tumblr Blog"
     if caption == 'null' or caption==None:
-        caption = "Default"
+        caption = "Just Another Tumblr Blog"
     if len(caption) > 500:
-        caption = caption[:00]
-    return caption
+        caption = caption[:500]
+        
+    return strip_tags(caption)
     
 def check_exist(value):
     flag = 0

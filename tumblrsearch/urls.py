@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     # url(r'^$', 'tumblrsearch.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', 'blogs.views.index'),
+    url(r'^search/', 'blogs.views.search'),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -45,6 +45,8 @@ TEMPLATE_DIRS = (
     normpath(join(SITE_ROOT, 'templates')),
 )
 
+USE_TZ = False
+
 # Application definition
 
 INSTALLED_APPS = (

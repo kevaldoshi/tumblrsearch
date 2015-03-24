@@ -1,0 +1,16 @@
+<!DOCTTYPE HTML>
+<html>
+    <head>
+        <title>TumblrSearch</title>
+    </head>
+    <body>
+        {%for blog in blogs%}
+            <h1>{{blog.caption}}</h1>
+            <a href="{{blog.url}}">{{blog.url}}</a>
+            <img src="{{blog.img_url}}" alt="no_image" />
+            {%for tag in blog.tags.all%}
+                <p>{{tag}}</p>
+            {%endfor%}
+        {%endfor%}
+    </body>
+</html>

@@ -5,8 +5,9 @@
     </head>
     <body>
         <h1>Voila</h1>
-    {% for blog in blogs %}
-        {{ blog.caption }}
-    {% endfor %}
+        <form action="/search/" method="post"> {% csrf_token %}
+            <input type="text" name="keyword" id="keyword" placeholder="Enter search keyword" />
+            <input type="submit" value="Search" />
+        </form>
     </body>
 </html>
