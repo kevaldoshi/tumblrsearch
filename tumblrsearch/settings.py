@@ -15,6 +15,13 @@ from os.path import abspath, basename, dirname, join, normpath
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+STATIC_ROOT = ''
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(normpath(join(BASE_DIR, 'blogs')), 'static/'),
+)
 
 def get_env_variable(var_name):
     """Get the environment variable or return exception"""
@@ -45,7 +52,7 @@ TEMPLATE_DIRS = (
     normpath(join(SITE_ROOT, 'templates')),
 )
 
-USE_TZ = False
+TIME_ZONE="UTC"
 
 # Application definition
 

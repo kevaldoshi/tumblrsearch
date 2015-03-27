@@ -6,6 +6,9 @@ import dateutil.tz
 import dateutil.parser
 import os
 from django.utils.html import strip_tags
+import HTMLParser
+import datetime
+import pytz
 
 
 class TumblrClient(object):
@@ -36,8 +39,10 @@ def process_caption(blog):
         caption = "Just Another Tumblr Blog"
     if len(caption) > 500:
         caption = caption[:500]
-        
-    return strip_tags(caption)
+    
+    caption = strip_tags(caption)
+    
+    return caption
     
 def check_exist(value):
     flag = 0
@@ -61,10 +66,11 @@ def create_blog(blog):
         
     
 def parsedate(datestr):
+    utc=pytz.UTC
     dt = dateutil.parser.parse(datestr)
     
-    if dt.tzinfo:
-        dt = dt.astimezone(dateutil.tz.tzlocal()).replace(tzinfo=None)
+    if not  dt.tzinfo:
+        dt = dt.astimezone(dateutil.tz.tzlocal()).replace(tzinfo='UTC')
         
     return dt    
 
