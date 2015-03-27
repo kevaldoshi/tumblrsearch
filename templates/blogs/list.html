@@ -1,16 +1,45 @@
-<!DOCTTYPE HTML>
-<html>
-    <head>
-        <title>TumblrSearch</title>
-    </head>
-    <body>
-        {%for blog in blogs%}
-            <h1>{{blog.caption}}</h1>
-            <a href="{{blog.url}}">{{blog.url}}</a>
-            <img src="{{blog.img_url}}" alt="no_image" />
-            {%for tag in blog.tags.all%}
-                <p>{{tag}}</p>
-            {%endfor%}
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<!--
+    {%for blog in blogs%}
+        <h1>{{blog.caption}}</h1>
+        <a href="{{blog.url}}">{{blog.url}}</a>
+        <img src="{{blog.img_url}}" alt="no_image" />
+        <p>{{blog.pub_date|date:"M d,Y"}}<p>
+        {%for tag in blog.tags.all%}
+            <p>{{tag}}</p>
         {%endfor%}
-    </body>
-</html>
+    {%endfor%}
+    
+!-->
+{%for blog in blogs%}
+<div class="container">
+    <div class="row">
+        <div class="span4"></div>
+            <div class="span4"></div>
+                <div class="center-block"></div>
+                    <a href="{{blog.url}}"><h1>{{blog.caption|truncatewords:8}}</h1></a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% if blog.img_url == "example.com" %}
+                                <img class="img-thumbnail" src="{% static "img/default.png" %}" />
+                            {% else %} 
+                                <img  class="img-thumbnail" src="{{blog.img_url}}" />
+                            {% endif %}
+                            <p>{{blog.pub_date}}</p>
+                            <ul class="list-inline">
+                                {%for tag in blog.tags.all%}
+                                    <li>{{ tag}}</li>
+                                {%endfor%}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+{%endfor%}
+{% endblock %}         
