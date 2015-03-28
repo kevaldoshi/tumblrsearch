@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="container">
     <div class="row vertical-center-row">
         <div class="col-lg-12">
             <div class="row ">
                 <div class="col-xs-4 col-xs-offset-4">
-                <form class="form-horizontal" action="/search/" method="post"> {% csrf_token %}
+                <form action="/search/" method="post"> {% csrf_token %}
                     <div class="input-group">
-                    <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Enter search keyword" />
-                    <span class="input-group-btn">
-                    
-                    <button class="btn btn-default m" type="button">Search</button>
-                    </span>
-   
+                        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Enter search keyword" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submi">Search</button>
+                        </span>
+                    </div> 
                 </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}        
