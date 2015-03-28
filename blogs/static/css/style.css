@@ -51,6 +51,7 @@ img{
     width: 600px;
 }
 
+
 .input-group{
     padding-bottom: 50px;
     padding-right: 200px;
@@ -69,10 +70,29 @@ img{
     text-align: center;
     padding-left: 15%;
     font-size: 26px;
+    color: #777;
 }
 
-.search-results{
-    text-align: center;
-    margin: auto;
+.again{
+    padding-left: 25%;
+}
 
+.again-sucess{
+    padding-left: 50%;
+}
+
+ul { 
+  list-style-type:none;
+}
+
+ul li {
+  background: #ddd no-repeat;
+  border-radius: 4px;
+  height:24px;
+}
+
+ul li.comment {
+  background-position: 0 -24px;
+  margin-bottom: 10px;
+  /*Override properties here if you wish */
 }

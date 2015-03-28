@@ -19,4 +19,5 @@ def search(request):
         tumblr = utils.TumblrClient()
         tumblr.fetch(keyword)
         blogs = Blog.objects.filter(tags__name__in=[keyword])
+    print len(blogs)    
     return render_to_response(template, {'blogs': blogs})   
