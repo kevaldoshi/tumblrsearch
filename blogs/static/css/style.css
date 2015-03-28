@@ -1,3 +1,5 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
+
 html, body{
     height: 100%;
     background: url('../img/tiny_grid.png')
@@ -47,4 +49,30 @@ img{
 
 .list-inline{
     width: 600px;
+}
+
+.input-group{
+    padding-bottom: 50px;
+    padding-right: 200px;
+}
+
+.page-center{
+  min-height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+}
+
+.landing-text{
+    display: inline;
+    text-align: center;
+    padding-left: 15%;
+    font-size: 26px;
+}
+
+.search-results{
+    text-align: center;
+    margin: auto;
+
 }

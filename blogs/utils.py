@@ -40,7 +40,7 @@ def process_caption(blog):
     return caption
     
 def create_blog(blog):
-    photo_url = blog['photos'][0]['alt_sizes'][-1]['url'] if 'photos' in blog else "example.com"
+    photo_url = blog['photos'][0]['alt_sizes'][-1]['url'] if 'photos' in blog else ""
     caption = process_caption(blog)
 
     created = Blog.objects.create(
@@ -62,7 +62,6 @@ def parsedate(datestr):
 
 		
 def get_env_variable(var_name):
-    """Get the environment variable or return exception"""
     try:
         return os.environ[var_name]
     except KeyError:
