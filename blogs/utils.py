@@ -1,6 +1,6 @@
-from django.core.exceptions import ImproperlyConfigured
 from .models import Blog
 from django.utils.html import strip_tags
+from tumblrsearch.settings import get_env_variable
 import pytumblr
 import dateutil.tz
 import dateutil.parser
@@ -59,11 +59,3 @@ def parsedate(datestr):
         dt = dt.astimezone(dateutil.tz.tzlocal()).replace(tzinfo='UTC')
         
     return dt    
-
-		
-def get_env_variable(var_name):
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-    raise ImproperlyConfigured(error_msg)

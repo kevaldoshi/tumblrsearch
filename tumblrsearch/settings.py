@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from os.path import abspath, basename, dirname, join, normpath
-#from blogs.utils import get_env_variable
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -51,8 +50,6 @@ ALLOWED_HOSTS = []
 TEMPLATE_DIRS = (
     normpath(join(SITE_ROOT, 'templates')),
 )
-
-TIME_ZONE="UTC"
 
 # Application definition
 
@@ -109,6 +106,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+MAX_TAG_LENGTH = 200
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

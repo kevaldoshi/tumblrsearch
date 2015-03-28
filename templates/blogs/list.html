@@ -16,7 +16,7 @@
                 <div class="span4"></div>
                     <div class="span4"></div>
                         <div class="center-block"></div>
-                            <a href="{{blog.url}}"><h1>{{blog.caption|truncatewords:8|safe}}</h1></a>
+                            <a href="{{blog.url}}"><h1>{{blog.caption|truncatechars:50|safe}}</h1></a>
                             <div class="row">
                                 <div class="col-md-12">
                                     {% if blog.img_url == "" %}

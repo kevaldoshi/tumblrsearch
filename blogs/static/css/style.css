@@ -60,7 +60,6 @@ img{
 .page-center{
   min-height: 100%;
   min-height: 100vh;
-
   display: flex;
   align-items: center;
 }
@@ -95,4 +94,8 @@ ul li.comment {
   background-position: 0 -24px;
   margin-bottom: 10px;
   /*Override properties here if you wish */
+}
+
+h1{
+    color: #555;
 }
