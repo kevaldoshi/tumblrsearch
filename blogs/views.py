@@ -14,10 +14,9 @@ def index(request):
 def search(request):
     template = 'blogs/list.html'
     keyword = request.POST['keyword']
-    IndexContent = {
-        'keyword': keyword,
-    }    
-    tumblr = utils.TumblrClient()
-    tumblr.fetch(keyword)
     blogs = Blog.objects.filter(tags__name__in=[keyword])
+    if len(blogs) == 0:
+        tumblr = utils.TumblrClient()
+        tumblr.fetch(keyword)
+        blogs = Blog.objects.filter(tags__name__in=[keyword])
     return render_to_response(template, {'blogs': blogs})   

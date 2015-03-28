@@ -1,14 +1,10 @@
 from django.core.exceptions import ImproperlyConfigured
 from .models import Blog
+from django.utils.html import strip_tags
 import pytumblr
-import json
 import dateutil.tz
 import dateutil.parser
 import os
-from django.utils.html import strip_tags
-import HTMLParser
-import datetime
-import pytz
 
 
 class TumblrClient(object):
@@ -22,7 +18,6 @@ class TumblrClient(object):
 		)
 		
 	def fetch(self, keyword):
-	    #print self.client.tagged(keyword)
 	    results = self.client.tagged(keyword)
 	    for item in results:
 	        create_blog(item)
@@ -35,7 +30,7 @@ def process_caption(blog):
         caption = blog['title']
     else:
         caption = "Just Another Tumblr Blog"
-    if caption == 'null' or caption==None:
+    if caption in ['null', None, '']:
         caption = "Just Another Tumblr Blog"
     if len(caption) > 500:
         caption = caption[:500]
@@ -44,32 +39,23 @@ def process_caption(blog):
     
     return caption
     
-def check_exist(value):
-    flag = 0
-    blog = Blog.objects.filter(url = value)
-    if len(blog) > 0:
-        flag = 1
-    return flag
-
 def create_blog(blog):
     photo_url = blog['photos'][0]['alt_sizes'][-1]['url'] if 'photos' in blog else "example.com"
     caption = process_caption(blog)
-    flag = check_exist(blog['post_url'])
-    if flag is 0:
-        created = Blog.objects.create(
-            caption = caption,
-            url = blog['post_url'],
-            pub_date = parsedate(blog['date']),
-            img_url = photo_url
-        )
-        created.tags.add(*(blog['tags']))
+
+    created = Blog.objects.create(
+        caption = caption,
+        url = blog['post_url'],
+        pub_date = parsedate(blog['date']),
+        img_url = photo_url
+    )
+    created.tags.add(*(blog['tags']))
         
     
 def parsedate(datestr):
-    utc=pytz.UTC
     dt = dateutil.parser.parse(datestr)
     
-    if not  dt.tzinfo:
+    if not dt.tzinfo:
         dt = dt.astimezone(dateutil.tz.tzlocal()).replace(tzinfo='UTC')
         
     return dt    
